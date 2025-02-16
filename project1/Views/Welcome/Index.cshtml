@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Hoş Geldiniz";
+}
+
+<div class="container text-center mt-5">
+    <div class="card shadow" style="max-width: 600px; margin: 0 auto;">
+        <div class="card-body">
+            <h2 class="card-title">Hoş Geldiniz, @ViewBag.Username!</h2>
+            <p class="card-text">Görevler sayfasına yönlendiriliyorsunuz...</p>
+            <p id="countdown">5 saniye içinde göreve geçeceksiniz.</p>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript ile geri sayım ve yönlendirme -->
+<script>
+    // Başlangıç süresi
+    var countdownTime = 5;
+
+    // Geri sayımı başlat
+    var countdownInterval = setInterval(function () {
+        // Geri sayımı güncelle
+        document.getElementById("countdown").innerText = countdownTime + " saniye içinde göreve geçeceksiniz.";
+
+        // Zaman bittiğinde yönlendirme işlemi yap
+        if (countdownTime === 0) {
+            clearInterval(countdownInterval); // Geri sayımı durdur
+            window.location.href = '/Task'; // 0 saniyede görevlere yönlendirme
+        }
+
+        countdownTime--; // Zamanı 1 saniye azalt
+    }, 500); // Her saniyede bir çalışacak
+</script>

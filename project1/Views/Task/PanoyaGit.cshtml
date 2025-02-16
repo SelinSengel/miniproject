@@ -1,0 +1,88 @@
+﻿@model PanoyaGitModel
+
+@{
+    ViewData["Title"] = "Görev Panosu";
+}
+
+<h2 class="text-center mb-4">@ViewData["Title"]</h2>
+
+<div class="row">
+    <!-- Devam Eden Görevler -->
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">Devam Eden Görevler</h3>
+            </div>
+            <div class="card-body">
+                @if (Model.OngoingTasks.Any())
+                {
+                    <ul class="list-group">
+                        @foreach (var task in Model.OngoingTasks)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>@task.Aciklama</strong>
+                                <span class="badge badge-warning">@task.Tarih.ToString("yyyy-MM-dd")</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="text-muted">Devam eden görev bulunmamaktadır.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!-- Tamamlanan Görevler -->
+    <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">Tamamlanan Görevler</h3>
+            </div>
+            <div class="card-body">
+                @if (Model.CompletedTasks.Any())
+                {
+                    <ul class="list-group">
+                        @foreach (var task in Model.CompletedTasks)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <strong>@task.Aciklama</strong>
+                                <span class="badge badge-success">@task.Tarih.ToString("yyyy-MM-dd")</span>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="text-muted">Henüz tamamlanan görev bulunmamaktadır.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-header {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    .list-group-item {
+        font-size: 1rem;
+        border: none;
+    }
+
+    .badge {
+        font-size: 0.9rem;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .text-muted {
+        font-size: 1rem;
+        color: #6c757d;
+    }
+</style>
